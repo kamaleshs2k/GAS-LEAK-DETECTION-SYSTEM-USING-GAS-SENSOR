@@ -11,7 +11,10 @@
 	
 ## Circuit Diagram:
 
- 
+ <img width="1919" height="969" alt="image" src="https://github.com/user-attachments/assets/900ec89f-427a-4351-a391-2a08660a1857" />
+
+## Schematic 
+<img width="985" height="760" alt="image" src="https://github.com/user-attachments/assets/2dd20d6e-bb81-420a-9168-8924dd6dea25" />
 
 
 
@@ -57,10 +60,58 @@ Step 7: Save Your Work
 •	Save the Circuit: Click "Save" to keep your circuit design and code for future use.
 
 ## Program:
+```c++
+int LED = A1;          //Red LED
+int LED1 = A3;         //Green LED
+int gas_pin = A0;       // For Gas Sensor
+int buzzer_pin = A2;   // For Buzzer
 
+
+
+void setup() 
+{
+  Serial.begin(9600);
+  pinMode (buzzer_pin, OUTPUT);
+  pinMode (gas_pin, INPUT);
+}
+
+void loop() {
+  	float sensorValue,gas_pin;
+	sensorValue = analogRead(gas_pin); // read analog input pin 0
+
+
+  if(sensorValue >= 50)
+  {  
+    digitalWrite(LED,HIGH);
+    digitalWrite(LED1,LOW);
+
+    digitalWrite (buzzer_pin, HIGH);
+    //Serial.println();
+    Serial.print(sensorValue);
+    Serial.println(" |SMOKE DETECTED|");     
+  }
+  
+  else
+  {
+  	digitalWrite(LED,LOW);
+    digitalWrite(LED1,HIGH);
+    
+    digitalWrite (buzzer_pin, LOW);
+    Serial.println();
+    Serial.println("Sensor Value: ");
+    Serial.print(sensorValue);
+    //Serial.print(" |Safe Mode|");
+  } 
+ 
+  delay(1000);
+
+}
+```
 ## Output:
 
-   
+https://github.com/user-attachments/assets/b4e6603f-6dcc-4136-bb6c-dfc260e292c8
+
+
 
 ## Result:
-
+Thus the air quality using Gas Sensor MQ-2 with Arduino UNO Board/ESP-32 using Tinker CAD is verified.
